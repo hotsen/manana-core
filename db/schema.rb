@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_07_013034) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_07_020055) do
   create_table "accounts", force: :cascade do |t|
     t.string "code", limit: 20, null: false
     t.datetime "created_at", null: false
@@ -70,6 +70,39 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_07_013034) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.string "code", null: false
+    t.text "content", limit: 16777215
+    t.datetime "created_at", null: false
+    t.string "do", default: "do", null: false
+    t.datetime "done_at"
+    t.datetime "fade_at"
+    t.datetime "fade_to"
+    t.integer "fire", default: 0, null: false
+    t.integer "foos", default: 0, null: false
+    t.integer "load", default: 0, null: false
+    t.integer "mass", default: 0, null: false
+    t.string "mood", default: "none", null: false
+    t.datetime "must_at"
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.string "uuid", null: false
+    t.index ["account_id", "code"], name: "index_items_on_account_id_and_code", unique: true
+    t.index ["account_id", "do"], name: "index_items_on_account_id_and_do"
+    t.index ["account_id", "done_at"], name: "index_items_on_account_id_and_done_at"
+    t.index ["account_id", "mood"], name: "index_items_on_account_id_and_mood"
+    t.index ["account_id", "must_at"], name: "index_items_on_account_id_and_must_at"
+    t.index ["account_id", "uuid"], name: "index_items_on_account_id_and_uuid", unique: true
+    t.index ["account_id"], name: "index_items_on_account_id"
+    t.index ["code"], name: "index_items_on_code", unique: true
+    t.index ["do"], name: "index_items_on_do"
+    t.index ["mood"], name: "index_items_on_mood"
+    t.index ["name"], name: "index_items_on_name"
+    t.index ["uuid"], name: "index_items_on_uuid", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "items", "accounts"
 end

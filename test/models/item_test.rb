@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class AccountTest < ActiveSupport::TestCase
+class ItemTest < ActiveSupport::TestCase
   #
   #
   # Shared Examples
@@ -25,7 +25,7 @@ class AccountTest < ActiveSupport::TestCase
   #
 
   def setup
-    @record = accounts(:bob)
+    @record = items(:foo)
     @record_class = @record.class
   end
 
@@ -38,9 +38,9 @@ class AccountTest < ActiveSupport::TestCase
   #
   #
 
-  def test_should_have_many_items
-    assert_respond_to @record, :items
-    assert_equal Item.where(account: @record), @record.items
+  def test_should_belong_to_account
+    assert_respond_to @record, :account
+    assert_equal accounts(:bob), @record.account
   end
 
   #

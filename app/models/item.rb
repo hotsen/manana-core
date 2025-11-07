@@ -1,4 +1,4 @@
-class Account < ApplicationRecord
+class Item < ApplicationRecord
   #
   #
   # Concerns
@@ -26,7 +26,7 @@ class Account < ApplicationRecord
   #
   #
 
-  has_many :items, dependent: :destroy
+  belongs_to :account
 
   #
   #
