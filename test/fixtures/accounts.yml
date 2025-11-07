@@ -1,0 +1,11 @@
+bob:
+  name: Bob Bobson
+  code: bob
+  uuid: 123e4567-e89b-12d3-a456-426614174000
+  mood: live
+
+zoe:
+  name: Zoe Zoetman
+  code: zoe
+  uuid: 123e4567-e89b-12d3-a456-426614174001
+  mood: free

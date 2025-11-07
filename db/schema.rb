@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_07_012804) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_07_013034) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "code", limit: 20, null: false
+    t.datetime "created_at", null: false
+    t.string "mood", limit: 8, default: "none", null: false
+    t.string "name", limit: 100, null: false
+    t.datetime "updated_at", null: false
+    t.string "uuid", limit: 36, null: false
+    t.index ["code"], name: "index_accounts_on_code", unique: true
+    t.index ["mood"], name: "index_accounts_on_mood"
+    t.index ["uuid"], name: "index_accounts_on_uuid", unique: true
+  end
+
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "message_checksum", null: false
